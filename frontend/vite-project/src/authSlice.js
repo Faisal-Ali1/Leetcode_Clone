@@ -20,6 +20,8 @@ export const loginUser = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             const response = await axiosClient.post('/user/login', credentials)
+            console.log(response.data.user);
+            
             return response.data.user
         }
         catch (err) {
@@ -45,7 +47,7 @@ export const logoutUser = createAsyncThunk(
     'auth/logout',
     async (_, { rejectWithValue }) => {
         try {
-            await axiosClient.get('/user/logout');
+            await axiosClient.post('/user/logout');
             return null;
         }
         catch (err) {
@@ -130,6 +132,7 @@ const authSlice = createSlice({
                 state.loading = false
                 state.error = action?.payload?.message || 'something went wrong'
                 state.user = null
+                state.isAuthenticated = false
 
             })
     }

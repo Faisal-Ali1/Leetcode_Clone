@@ -75,7 +75,7 @@ const logout = (req, res) => {
 
 
         const { token } = req.cookies;
-        const payload = jwt.decode(token)
+        const payload = jwt.decode(token);
 
         client.set(`token:${token}`, 'expired');
         client.expireAt(`token:${token}`, payload.exp);
