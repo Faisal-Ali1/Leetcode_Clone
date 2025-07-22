@@ -16,7 +16,8 @@ userRouter.get('/check' , user_check , (req , res)=>{
     const reply = {
         email: req.result.email,
         firstname: req.result.firstname,
-        _id: req.result._id
+        _id: req.result._id,
+        role:req.result.role
     }
 
     res.status(200).json({

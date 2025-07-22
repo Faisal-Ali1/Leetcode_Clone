@@ -46,7 +46,7 @@ function Signup() {
 
   useEffect(()=>{
     if(isAuthenticated)
-      navigate('/login')
+      navigate('/')
   } , [isAuthenticated]);
 
 

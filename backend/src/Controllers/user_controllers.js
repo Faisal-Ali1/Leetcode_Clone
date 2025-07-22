@@ -13,13 +13,23 @@ const register = async (req, res) => {
         req.body.role = 'user';
 
        const personData = await user.insertOne(req.body);
+       
+        
+       const token = jwt.sign({_id:personData._id, email: req.body.email, role: personData.role }, process.env.JWT_PRIVATE_KEY, { expiresIn: "10h" })
+
+    
+       
+       res.cookie('token' , token , { maxAge: 36000000});
 
         const reply = {
             _id:personData._id,
             firstname: personData.firstname,
             email: personData.email,
-
+            role: personData.role
         }
+
+        // console.log('reply: ' , reply);
+        
 
         res.status(201).json({
             user: reply,
@@ -35,16 +45,20 @@ const register = async (req, res) => {
 const login = (req, res) => {
     try {
 
-        const token = jwt.sign({_id:req.userData._id, email: req.body.email, role: req.userData.role }, process.env.JWT_PRIVATE_KEY, { expiresIn: 500 })
+        const token = jwt.sign({_id:req.userData._id, email: req.body.email, role: req.userData.role }, process.env.JWT_PRIVATE_KEY, { expiresIn: "10h" })
 
         const reply = {
             _id: req.userData._id,
             email: req.userData.email,
             firstname: req.userData.firstname,
+            role:req.userData.role
             
         }
 
-        res.cookie('token', token, { expiresIn: 500 });
+        // console.log(reply);
+        
+
+        res.cookie('token', token, { maxAge: 36000000  });
         
         res.status(200).json({
             user : reply,
@@ -54,7 +68,7 @@ const login = (req, res) => {
 
     }
     catch (err) {
-        res.status(401).send('Error: ' + err.message)
+        res.status(401).send(err.message)
     }
 }
 
@@ -118,7 +132,7 @@ const getproblemById = async( req , res) => {
     try{
         const {id} = req.params;
 
-       const prob = await problem.findOne({_id:id}).select('-refrenceSolution -problemCreator -problemUpdater -__v -hiddenTestCases')
+       const prob = await problem.findOne({_id:id}).select(' -problemCreator -problemUpdater -__v -hiddenTestCases')
     //    .skip(req.page-1).limit(10);
 
        if(!prob)
@@ -144,15 +158,15 @@ const getAllSolvedProblem = async(req , res)=>{
         if(!person)
             return res.status(404).send('user not found');
 
-        if(person.problemSolved.length === 0)
-            return res.status(400).send('you have not solved any problem yet');
+        // if(person.problemSolved.length === 0)
+        //     return res.status(200).send('you have not solved any problem yet');
 
         res.status(200).send(person.problemSolved);
 
 
     }
     catch(err){
-
+        res.status(400).send('Error: ' + err.message);
     }
 }
 

@@ -1,15 +1,5 @@
 const axios = require('axios');
 
-// function getlanguageId(lang) {
-
-//     const language = {
-//         'c++': 54,
-//         'java': 62,
-//         'javascript': 63
-//     }
-
-//     return language[lang];
-// }
 
 function getLanguageId(lang) {
 
@@ -82,7 +72,7 @@ const sendBatch = async (token) => {
             const response = await axios.request(options);
             return response.data;
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     }
 

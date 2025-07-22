@@ -13,7 +13,7 @@ const problem_schema = new mongoose.Schema({
     },
     tag:{
         type:String,
-        enum:[ 'array' , 'linked List' , 'graph' , 'Dp'],
+        enum:[ 'array' , 'linked list' , 'graph' , 'dp'],
         required:true
     },
     discription: {
