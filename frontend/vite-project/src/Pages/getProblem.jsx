@@ -18,12 +18,13 @@ function GetProblem() {
 
     // console.log(problemId);
 
-    console.log(runResult);
+    // console.log(runResult);
 
 
     // fetching question
     useEffect(() => {
-
+        console.log('fetching data');
+        
         const fetchData = async () => {
             const { data } = await axiosClient.get(`/user/getproblem/${problemId}`);
             setProblem(data);
@@ -48,7 +49,7 @@ function GetProblem() {
         try {
             setLoading(true);
             const runData = editorref.current?.getValue();
-            console.log(language);
+            // console.log(language);
             
             const { data } = await axiosClient.post(`/problem/run/${problemId}`, {
                 code: runData,

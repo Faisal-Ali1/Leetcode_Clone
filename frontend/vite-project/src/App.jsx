@@ -17,7 +17,7 @@ import UpdateProblem from "./component/updateProblemById";
 function App() {
 
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
 
   const dispatch = useDispatch();
 
@@ -47,9 +47,9 @@ function App() {
         </Route>
 
         <Route path="/getproblem/:problemId" element={
-          isAuthenticated && user.role === 'admin' ?
+          isAuthenticated ?
            <GetProblem /> :
-           <Navigate to='/'/>}>
+           <Navigate to='/login'/>}>
           </Route>
 
         <Route path="/admin/deleteproblem" element={

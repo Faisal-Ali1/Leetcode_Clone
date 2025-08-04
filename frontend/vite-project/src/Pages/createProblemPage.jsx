@@ -88,7 +88,7 @@ function CreateProblemPage() {
 
     const onSubmit = async (data) => {
         try {
-            console.log(data);
+            // console.log(data);
             await axiosClient.post('/admin/createproblem' , data);
             alert('Problem created successfully');
             navigate('/');
@@ -110,13 +110,15 @@ function CreateProblemPage() {
                     className="form">
 
 
-                    {/* Title  */}
+                    {/* title , difficultyLevel , tag , description   */}
                     <div className=" card shadow-xl rounded-xl p-5 ">
+
+                        {/* title */}
                         <div className="flex flex-col gap-2">
                             <label className="font-bold">Title:*</label>
                             <input
                                 type="text"
-                                className={`input w-100  ${errors.title && 'input-error'}`}
+                                className={`input w-100 max-sm:w-80  ${errors.title && 'input-error'}`}
                                 placeholder="Enter title here"
                                 {...register('title')}
                                 required={true}

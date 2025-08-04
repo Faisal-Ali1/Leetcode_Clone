@@ -47,8 +47,10 @@ function UpdateProblem() {
             <div className="p-20">
                 <h2 className="text-3xl font-bold text-center mb-5">Update Problem</h2>
                 <div className="relative">
+
+                    {/* project is under construction */}
                     {
-                        construct ? <div className="absolute z-99 border w-full h-full flex justify-center items-center font-bold skeleton bg-amber-300"> <p className="text-4xl">Page is under construction</p></div>:""
+                        construct ? <div className="absolute z-99 border w-full h-full flex justify-center items-center font-bold skeleton bg-amber-300 "> <p className="text-4xl max-sm:text-2xl text-center">Page is under construction</p></div>:""
                     }
                     <form onSubmit={handleSubmit((data) => console.log(data))}>
 

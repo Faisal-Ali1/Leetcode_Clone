@@ -22,7 +22,7 @@ function Deleteproblem() {
         fetchData();
     }, []);
 
-    console.log(problem);
+    // console.log(problem);
 
     // handling delete button
     const handleDelete = async (probId) => {

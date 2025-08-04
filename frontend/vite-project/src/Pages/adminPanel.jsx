@@ -5,7 +5,7 @@ function AdminPanel(){
         <div className="text-center">
             <h2 className="font-bold text-3xl mt-10">Admin Panel</h2>
             <p className="font-semibold">Manage Coding problem on your platform</p>
-            <div className="grid grid-cols-3 gap-7 mt-10 w-[80%] m-auto">
+            <div className="grid grid-cols-3 gap-7 mt-10 w-[80%] m-auto max-md:grid-cols-1">
 
                 {/* Create Problem */}
                 <div className="card shadow-xl flex flex-col items-center gap-7 p-7 rounded justify-center bg-green-200 skeleton hover:-translate-y-2">
